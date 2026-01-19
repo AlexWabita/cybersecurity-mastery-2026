@@ -1,0 +1,79 @@
+# Credentials and Sensitive Data
+*.key
+*.pem
+*.ppk
+*.p12
+*.pfx
+*.keystore
+*.jks
+credentials.txt
+secrets.txt
+passwords.txt
+config.ini
+.env
+.env.local
+
+# API Keys and Tokens
+*api_key*
+*token*
+*secret*
+
+# Database Files
+*.db
+*.sqlite
+*.sqlite3
+
+# Packet Captures (can contain sensitive traffic)
+*.pcap
+*.pcapng
+*.cap
+
+# Logs (may contain sensitive info)
+*.log
+logs/
+
+# Screenshots (you'll manually choose which to commit)
+screenshots/
+images/sensitive/
+
+# Metasploit
+.msf4/
+loot/
+*.rc
+
+# Burp Suite
+burp-project-files/
+*.burp
+
+# Hash Files
+*.hash
+hashes.txt
+cracked.txt
+
+# Personal Notes (keep private)
+private-notes/
+personal/
+
+# OS Generated
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+env/
+
+# IDEs
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# Temporary Files
+*.tmp
+temp/
+tmp/
