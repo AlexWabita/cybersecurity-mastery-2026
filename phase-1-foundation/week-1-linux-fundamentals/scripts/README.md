@@ -95,3 +95,79 @@ As I build more tools, I'll document:
 - Expected output
 - Security implications
 - Ethical usage guidelines
+
+
+---
+---
+
+
+
+---
+
+## suid-finder.sh
+
+**Purpose**: Enumerate and categorize SUID binaries for privilege escalation reconnaissance during penetration testing.
+
+**Usage**:
+```bash
+chmod +x suid-finder.sh
+./suid-finder.sh
+```
+
+**What it does**:
+- Searches entire filesystem for SUID binaries
+- Categorizes binaries as STANDARD, INVESTIGATE, or SUSPICIOUS
+- Flags binaries in high-risk locations (/tmp, /home, /var/tmp)
+- Displays ownership and permissions for each binary
+- Provides GTFOBins lookup recommendations
+
+**Use cases**:
+- Post-exploitation privilege escalation enumeration
+- System security auditing
+- Identifying misconfigured SUID binaries
+- CTF challenges requiring privilege escalation
+- Security baseline documentation
+
+**Expected Output Example**:
+```
+==========================================
+    SUID BINARY ENUMERATION
+==========================================
+
+[+] Total SUID binaries found: 23
+
+[STANDARD] /usr/bin/passwd
+[STANDARD] /usr/bin/sudo
+...
+
+[INVESTIGATE] /usr/sbin/exim4
+  └─ Permissions: -rwsr-xr-x root root
+
+[SUSPICIOUS] /tmp/suspicious-script.sh
+  └─ Location: High-risk directory!
+  └─ Permissions: -rwsr-xr-x root root
+```
+
+**Key Findings to Investigate**:
+- Binaries in `/tmp`, `/home`, `/var/tmp` (unusual locations)
+- Third-party applications with SUID (exim, ntfs-3g, pppd)
+- Binaries with both SUID and SGID bits set
+- Custom scripts with SUID (major red flag)
+
+**Privilege Escalation Workflow**:
+1. Run this script on compromised system
+2. Focus on INVESTIGATE and SUSPICIOUS binaries
+3. Check GTFOBins for exploitation methods
+4. Verify binary versions against CVE databases
+5. Test for command injection or path manipulation
+6. Attempt privilege escalation to root
+
+**Defense Recommendations**:
+- Remove SUID from unnecessary binaries: `chmod u-s /path/to/binary`
+- Regularly audit SUID binaries and maintain baseline
+- Monitor for new SUID binaries (sign of compromise)
+- Keep system binaries updated to patch vulnerabilities
+
+**Author**: Alex Wabita  
+**Created**: January 2026  
+**Last Updated**: January 2026
